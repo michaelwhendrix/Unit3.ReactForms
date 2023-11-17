@@ -5,7 +5,6 @@ const Authenticate = ({token}) => {
     const [successMessage, setSuccessMessage] = useState(null)
 
     const handleClick = async(tokenB) => {
-            console.log("authenticating",token)
         try{
         const response = await fetch('https://fsa-jwt-practice.herokuapp.com/authenticate', 
               { 
@@ -16,14 +15,15 @@ const Authenticate = ({token}) => {
                 }
               })
         const result = await response.json()
-        console.log(result)
-        }catch(error){console.log(error)}
+        setSuccessMessage(result.message)
+        }catch(err){setError(err)}
     }
     return (
     <>
         <h2>Authenticate</h2>
         <button onClick={() => {handleClick(token)}}>Authenticate Submit</button>
-    
+        {error? <h3>{error}</h3> :
+        <h3>{successMessage}</h3>}
     </>
     )
 
