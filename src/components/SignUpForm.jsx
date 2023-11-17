@@ -5,6 +5,7 @@ const SignUpForm = ({setToken}) => {
     const [username, setUserName] = useState(" ")
     const [password, setPassword] = useState(" ")
     const [error, setError] = useState(null)
+    const [message, setMessage] = useState(" ")
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -22,15 +23,13 @@ const SignUpForm = ({setToken}) => {
             })
             const result = await response.json()
             setToken(result.token)
-            console.log(result.token)
-        }catch(error){setError(error.message)}
+            setMessage('Successfully Signed Up')
+        }catch(err){setError(err.message)}
     }
     return <>
             <h2>SignUp</h2>
-            {
-                error? <p>{error}</p> :
-                <p>Everything ok</p>
-            }
+            { error && <p>Something Went Wrong</p> }
+            <h3>{message}</h3>
             <form onSubmit={handleSubmit}>
                 <label>Username
                     <input value={username} onChange={(e) => {
