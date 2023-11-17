@@ -32,12 +32,12 @@ const SignUpForm = ({setToken}) => {
             <h3>{message}</h3>
             <form onSubmit={handleSubmit}>
                 <label>Username
-                    <input value={username} onChange={(e) => {
+                    <input  minLength={"8"} value={username} onChange={(e) => {
                         setUserName(e.target.value)
                     }}></input>
                 </label>
                 <label>Password
-                    <input value={password} onChange={(e) =>{
+                    <input minLength={"10"} value={password} onChange={(e) =>{
                         setPassword(e.target.value)
                     }}>
 
