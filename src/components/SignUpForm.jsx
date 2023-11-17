@@ -6,10 +6,14 @@ const SignUpForm = () => {
     const [password, setPassword] = useState(" ")
     const [error, setError] = useState(null)
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log("submitted")
+    }
     return <>
             <h2>SignUp</h2>
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>Username
                     <input value={username} onChange={(e) => {
                         setUserName(e.target.value)
